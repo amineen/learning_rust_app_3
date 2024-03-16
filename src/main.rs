@@ -1,5 +1,10 @@
 #![allow(unused)]
 
+//import chrono crate
+extern crate chrono;
+
+use chrono::prelude::*;
+
 #[derive(Debug)]
 struct User {
     user_id: i16,
@@ -27,8 +32,10 @@ impl User {
         self.email = Some(email.to_string());
         self
     }
-    fn get_year_of_birth(&self) -> Option<i16> {
-        self.age.map(|age| 2024 - age as i16)
+    fn get_year_of_birth(&self) -> Option<i32> {
+        let now = Utc::now();
+        let current_year = now.year();
+        self.age.map(|age| current_year - age as i32)
     }
 }
 
@@ -78,6 +85,9 @@ fn main() {
         .email("johndoe@gmail.com")
         .build();
 
-    println!("{:?}", user);
-    println!("{:?}", user2);
+    let user1_yob = user.get_year_of_birth().unwrap_or(1990);
+    let user2_yob = user2.get_year_of_birth().unwrap_or(1990);
+
+    println!("{:?} was born in {}", user, user1_yob);
+    println!("{:?} was born in {}", user2, user2_yob);
 }
