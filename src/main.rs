@@ -27,6 +27,9 @@ impl User {
         self.email = Some(email.to_string());
         self
     }
+    fn get_year_of_birth(&self) -> Option<i16> {
+        self.age.map(|age| 2024 - age as i16)
+    }
 }
 
 struct UserBuilder {
