@@ -90,4 +90,8 @@ fn main() {
 
     println!("{:?} was born in {}", user, user1_yob);
     println!("{:?} was born in {}", user2, user2_yob);
+
+    let numbers = [1, 2, 3, 4, 5, 6];
+    let sum: i32 = numbers.iter().sum();
+    println!("Sum of numbers: {}", sum);
 }
